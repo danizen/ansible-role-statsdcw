@@ -1,0 +1,20 @@
+---
+- name: enable epel repo if needed
+  yum: name=epel-release state=present update_cache=yes
+
+- name: install statsd from epel
+  yum: name=statsd state=present
+
+- name: install aws-cloudwatch-statsd-backend using an url
+  command: 'npm install -g {{ statsdcw_backend_url }}'
+    creates: /usr/lib/node_modules/aws-cloudwatch-statsd-backend/package.json
+  when: '{{ statsdcw_backend_url | bool }}'
+
+- name: install aws-cloudwatch-statsd-backend using npm
+  npm:
+    name: aws-cloudwatch-statsd-backend
+    state: present
+    version: '{{ statscw_backend_version }}'
+    global: yes
+  when: 'not {{ statsdcw_backend_url | bool }}'
+

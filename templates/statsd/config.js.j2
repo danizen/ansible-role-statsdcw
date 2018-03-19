@@ -3,9 +3,20 @@
   address: "127.0.0.1",
   mgmt_address: "127.0.0.1",
   cloudwatch: {
-    region: "us-east-1",
-    iamRole: "any",
-    namespace: "Web Applications"
+    {% if (statsdcw_namespace | bool) %}
+    namespace: "{{ statsdcw_namespace }}",
+    {% endif %}
+    {% if (statsdcw_access_key_id | bool) %}
+    accessKeyId: "{{ statsdcw_access_key_id }}",
+    secretAccessKey: "{{ stastsdcw_secret_access_key }}",
+    {% else %}
+    iamRole: "{{ statsdcw_iam_role }}",
+    {% endif %}
+    {% if (statsdcw_region | bool) %}
+    region: "us-east-1"
+    {% else %}
+    region: "{{ ansible_ec2_placement_region }}"
+    {% endif %}
   }
 }
 

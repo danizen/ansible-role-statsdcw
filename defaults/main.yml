@@ -1,6 +1,8 @@
 ---
 # Source from which aws-cloudwatch-statsd-backend will be installed
-statsdcw_backend: 'https://github.com/camitz/aws-cloudwatch-statsd-backend.git'
+statsdcw_backend_url: False
+
+statsdcw_backend_version: '>= 1.2.0'
 
 # If an aws region is provided, it will be configured, otherwise we will try to use ec2_facts to configure it
 statsdcw_region: False
