@@ -1,0 +1,11 @@
+{
+  backends: [ "aws-cloudwatch-statsd-backend" ],
+  address: "127.0.0.1",
+  mgmt_address: "127.0.0.1",
+  cloudwatch: {
+    region: "us-east-1",
+    iamRole: "any",
+    namespace: "Web Applications"
+  }
+}
+
