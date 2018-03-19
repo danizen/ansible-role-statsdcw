@@ -1,0 +1,16 @@
+---
+# Source from which aws-cloudwatch-statsd-backend will be installed
+statsdcw_backend: 'https://github.com/camitz/aws-cloudwatch-statsd-backend.git'
+
+# If an aws region is provided, it will be configured, otherwise we will try to use ec2_facts to configure it
+statsdcw_region: False
+
+# This role will be used by default
+statsdcw_iam_role: 'any'
+
+# If an key id and secret access key are provided, then they will be used in place of an iam role
+statsdcw_access_key_id: False
+statsdcw_secret_access_key: False
+
+# If a namespace string is provided, it will be configured, otherwise not
+statsdcw_namespace: False
